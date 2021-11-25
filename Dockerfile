@@ -5,10 +5,10 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["OptiOpenShiftTestApp/OptiOpenShiftTestApp.csproj", "OptiOpenShiftTestApp/"]
-RUN dotnet restore "OptiOpenShiftTestApp/OptiOpenShiftTestApp.csproj"
+COPY ["OptiOpenShiftTestApp.csproj", "."]
+RUN dotnet restore "OptiOpenShiftTestApp.csproj"
 COPY . .
-WORKDIR "/src/OptiOpenShiftTestApp"
+WORKDIR "/src"
 RUN dotnet build "OptiOpenShiftTestApp.csproj" -c Release -o /app/build
 
 FROM build AS publish
